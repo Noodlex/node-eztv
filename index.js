@@ -1,10 +1,10 @@
 import cheerio from 'cheerio';
 import fetch from 'isomorphic-fetch';
 
-const urlRoot = 'https://eztv.ag';
+// const urlRoot = 'https://eztv.ag';
 // const urlRoot = 'https://eztv-proxy.net';
 
-export async function getShows(options = {}) {
+export async function getShows(urlRoot, options = {}) {
   try {
     const results = await fetch(`${urlRoot}/showlist`).then(res => res.text());
     const $ = cheerio.load(results);
@@ -50,7 +50,7 @@ export async function getShows(options = {}) {
   }
 }
 
-export async function getShowEpisodes(showId, showName) {
+export async function getShowEpisodes(urlRoot, showId, showName) {
   try {
     if (typeof showId !== 'number' && !(showId instanceof Number)) {
       throw new Error('getShowEpisodes show id argument must be a number');
