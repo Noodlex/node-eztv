@@ -96,6 +96,7 @@ export async function getShowEpisodes(urlRoot, showId, showName) {
         .attr('href');
       const torrentURL = $(e).find('td').eq(2).find('a.download_1')
         .attr('href');
+      const seed = Number($(e).find('td').eq(5).text());
 
       return {
         id,
@@ -108,7 +109,8 @@ export async function getShowEpisodes(urlRoot, showId, showName) {
         repack,
         size,
         magnet,
-        torrentURL
+        torrentURL,
+        seed
       };
     }).get();
 
